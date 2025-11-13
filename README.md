@@ -11,7 +11,7 @@
 - João Victor de Lima Uchôa
 - Eugenia Rodrigues de Carvalho Vieira de Melo Guedes
 - Joab Pereira da Silva Júnior
-- João Gabriel
+- João Gabriel Gonçalves de Lima
 
 
 ### Tecnologias Utilizadas
