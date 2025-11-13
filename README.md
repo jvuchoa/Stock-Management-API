@@ -1,96 +1,90 @@
-Stock Management API
-Sistema de Gerenciamento de Estoque com Autenticação JWT e Controle de Acesso Baseado em Roles
-Sobre o Projeto
+# Stock Management API
 
-API REST desenvolvida em Spring Boot para gerenciamento completo de estoque de produtos, com sistema robusto de autenticação e autorização.
-O projeto implementa controle de acesso granular através de roles (ADMIN, SELLER, CUSTOMER) e oferece funcionalidades de CRUD para produtos, categorias e controle de estoque.
+## Sistema de gerenciamento de estoque com autenticação JWT e controle de acesso baseado em roles.
 
-Equipe de Desenvolvimento
 
-João Victor de Lima Uchôa
+### Sobre o Projeto
+- API REST desenvolvida em Spring Boot para gerenciamento completo de estoque de produtos, com sistema robusto de autenticação e autorização. O projeto implementa controle de acesso granular através de roles (ADMIN, SELLER, CUSTOMER) e oferece funcionalidades de CRUD para produtos, categorias e controle de estoque.
 
-Eugenia Rodrigues de Carvalho Vieira de Melo Guedes
+### Equipe de Desenvolvimento
 
-Joab Pereira da Silva Júnior
+- João Victor de Lima Uchôa
+- Eugenia Rodrigues de Carvalho Vieira de Melo Guedes
+- Joab Pereira da Silva Júnior
+- João Gabriel
 
-João Gabriel
 
-Tecnologias Utilizadas
+### Tecnologias Utilizadas
 
-Java 21
+- Java 21
+- Spring Boot 3.5.7
+- Spring Data JPA
+- Spring Security (JWT Authentication)
+- H2 Database (desenvolvimento)
+- Lombok
+- Maven
 
-Spring Boot 3.5.7
 
-Spring Data JPA
+## Funcionalidades
+🔐 Autenticação e Autorização
 
-Spring Security (JWT Authentication)
+- Login com geração de token JWT
+- Refresh token para renovação de sessão
+- Controle de acesso baseado em roles:
 
-H2 Database (ambiente de desenvolvimento)
+- ADMIN → Criar/editar/deletar produtos, categorias e gerenciar sistema
+- SELLER → Cadastrar e editar produtos próprios
+- CUSTOMER → Visualizar catálogo de produtos
 
-Lombok
 
-Maven
 
-Funcionalidades
-Autenticação e Autorização
+### Gestão de Categorias
 
-Login com geração de token JWT
+- CRUD completo de categorias
+- Suporte a hierarquia (categoria pai → filho)
+- Validação de unicidade de nome no mesmo nível
+- Proteção de endpoints por role (apenas ADMIN)
 
-Refresh token para renovação de sessão
+### Gestão de Produtos
 
-Controle de acesso baseado em roles:
+- CRUD de produtos
+- Relacionamento obrigatório com categorias
+- Controle de permissões por role
+- Validações de integridade
 
-ADMIN: Criar, editar e deletar produtos, categorias e gerenciar o sistema
+### Controle de Estoque
 
-SELLER: Cadastrar e editar produtos próprios
+- Atualização de quantidade em estoque
+- Validações de estoque mínimo
+- Histórico de movimentações
 
-CUSTOMER: Visualizar catálogo de produtos
+##  Endpoints da API
 
-Gestão de Categorias
+###  Autenticação
+```http
+POST /auth/login      → Autenticação e geração de token JWT  
+POST /auth/refresh    → Renovação de token  
+GET  /auth/me         → Informações do usuário autenticado  
 
-CRUD completo de categorias
-
-Suporte a hierarquia (categoria pai → filho)
-
-Validação de unicidade de nome no mesmo nível
-
-Proteção de endpoints por role (apenas ADMIN)
-
-Gestão de Produtos
-
-CRUD de produtos
-
-Relacionamento obrigatório com categorias
-
-Controle de permissões por role
-
-Validações de integridade
-
-Controle de Estoque
-
-Atualização de quantidade em estoque
-
-Validações de estoque mínimo
-
-Histórico de movimentações
-
-Endpoints da API
-Autenticação
-POST /auth/login      # Autenticação e geração de token JWT  
-POST /auth/refresh    # Renovação de token  
-GET  /auth/me         # Informações do usuário autenticado  
+httpGET    /products              # Listar produtos (PUBLIC)
+GET    /products/{id}         # Buscar produto por ID (PUBLIC)
+POST   /products              # Criar produto (ADMIN/SELLER)
+PUT    /products/{id}         # Atualizar produto (ADMIN/SELLER)
+DELETE /products/{id}         # Deletar produto (ADMIN)
+PATCH  /products/{id}/stock   # Atualizar estoque (ADMIN/SELLER)
 
 Categorias
-GET    /categories           # Listar todas as categorias (PUBLIC)  
-GET    /categories/{id}      # Buscar categoria por ID (PUBLIC)  
-POST   /categories           # Criar nova categoria (ADMIN)  
-PUT    /categories/{id}      # Atualizar categoria (ADMIN)  
-DELETE /categories/{id}      # Deletar categoria (ADMIN)  
+GET    /categories          → Listar todas as categorias (PUBLIC)  
+GET    /categories/{id}     → Buscar categoria por ID (PUBLIC)  
+POST   /categories          → Criar nova categoria (ADMIN)  
+PUT    /categories/{id}     → Atualizar categoria (ADMIN)  
+DELETE /categories/{id}     → Deletar categoria (ADMIN)
 
 Produtos
-GET    /products             # Listar produtos (PUBLIC)  
-GET    /products/{id}        # Buscar produto por ID (PUBLIC)  
-POST   /products             # Criar produto (ADMIN/SELLER)  
-PUT    /products/{id}        # Atualizar produto (ADMIN/SELLER)  
-DELETE /products/{id}        # Deletar produto (ADMIN)  
-PATCH  /products/{id}/stock  # Atualizar estoque (ADMIN/SELLER)  
+
+GET    /products            → Listar produtos (PUBLIC)  
+GET    /products/{id}       → Buscar produto por ID (PUBLIC)  
+POST   /products            → Criar produto (ADMIN / SELLER)  
+PUT    /products/{id}       → Atualizar produto (ADMIN / SELLER)  
+DELETE /products/{id}       → Deletar produto (ADMIN)  
+PATCH  /products/{id}/stock → Atualizar estoque (ADMIN / SELLER)  
