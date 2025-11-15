@@ -27,11 +27,12 @@ public class Categoria {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "parente_id")
+    @JoinColumn(name = "parent_id")
     private Categoria parent;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parent")
     private List<Categoria> children = new ArrayList<>();
+
 
 
 
