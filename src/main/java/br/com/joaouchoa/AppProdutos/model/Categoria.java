@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -13,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "tb_categoria",
         uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"nome", "parente_id"})
+        @UniqueConstraint(columnNames = {"nome", "parent_id"})
     })
 public class Categoria {
     @Id
@@ -24,8 +27,12 @@ public class Categoria {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "parente_id")
+    @JoinColumn(name = "parent_id")
     private Categoria parent;
+
+    @OneToMany(mappedBy = "parent")
+    private List<Categoria> children = new ArrayList<>();
+
 
 
 
