@@ -1,4 +1,4 @@
-package br.com.joaouchoa.AppProdutos.domain.user;
+package br.com.joaouchoa.AppProdutos.model;
 
 import jakarta.persistence.*;
 
