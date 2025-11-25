@@ -51,11 +51,7 @@
 - Relacionamento obrigatório com categorias
 - Controle de permissões por role
 - Validações de integridade
-
-### Controle de Estoque
-
 - Atualização de quantidade em estoque
-- Validações de estoque mínimo
 - Histórico de movimentações
 
 ##  Endpoints da API
