@@ -51,8 +51,53 @@
 - Relacionamento obrigatório com categorias
 - Controle de permissões por role
 - Validações de integridade
+
+## Gestão de Estoque 
+
 - Atualização de quantidade em estoque
-- Histórico de movimentações
+- Acesso permitido para ADMIN e SELLER
+
+## Como iniciar o Projeto
+
+1.Clonar o Repositório
+- git clone https://github.com/jvuchoa/Stock-Management-API.git
+- cd Stock-Management-API
+  
+2. Gere o Keystore para JWT (RSA)
+- Execute no terminal:
+keytool -genkeypair -alias minhaChaveRSA -keyalg RSA -keysize 2048 -keystore meuKeystore.jks -storepass senha123
+- No Linux/Mac:
+keytool -genkeypair -alias minhaChaveRSA -keyalg RSA -keysize 2048 -keystore src/main/resources/meuKeystore.jks -storepass senha123 -validity 3650
+- Durante a execução, pressione ENTER em todas as perguntas para usar valores padrão.
+O arquivo meuKeystore.jks será criado em src/main/resources/.
+
+3️. Compilar o projeto
+mvn clean install
+
+4️. Executar a aplicação
+mvn spring-boot:run
+
+5️. Acessar a aplicação
+
+API: http://localhost:8080
+
+## 🗄️ Console H2 Database
+
+URL: http://localhost:8080/h2-console
+
+JDBC URL: jdbc:h2:mem:produtosdb
+
+Username: sa
+
+Password: (deixe vazio)]
+
+## 👤 Usuários Padrão
+| Usuário  | Senha       | Role     | Permissões                   |
+| -------- | ----------- | -------- | ---------------------------- |
+| admin    | admin123    | ADMIN    | Acesso total                 |
+| seller   | seller123   | SELLER   | Gerenciar produtos e estoque |
+| customer | customer123 | CUSTOMER | Apenas visualização          |
+
 
 ##  Endpoints da API
 
@@ -83,4 +128,8 @@ GET    /products/{id}       → Buscar produto por ID (PUBLIC)
 POST   /products            → Criar produto (ADMIN / SELLER)  
 PUT    /products/{id}       → Atualizar produto (ADMIN / SELLER)  
 DELETE /products/{id}       → Deletar produto (ADMIN)  
-PATCH  /products/{id}/stock → Atualizar estoque (ADMIN / SELLER)  
+PATCH  /products/{id}/stock → Atualizar estoque (ADMIN / SELLER)
+
+
+
+
