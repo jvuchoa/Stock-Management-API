@@ -46,12 +46,10 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody CreateUserDTO createUserDTO) {
 
-        // Verifica se já existe usuário com esse e-mail
         if (userRepository.findByEmail(createUserDTO.email()).isPresent()) {
             return ResponseEntity.badRequest().build();
         }
 
-        // Busca a role BASIC (igual ao código 1)
         var roleName = Role.Values.SELLER.getName();
         var customerRole = roleRepository.findByName(roleName);
 
@@ -64,7 +62,6 @@ public class AuthController {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        // Cria o usuário
         User user = new User();
         user.setName(createUserDTO.name());
         user.setEmail(createUserDTO.email());
