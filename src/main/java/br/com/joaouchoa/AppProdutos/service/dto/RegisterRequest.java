@@ -1,11 +1,11 @@
 package br.com.joaouchoa.AppProdutos.controller.dto;
 
-import br.com.joaouchoa.AppProdutos.domain.user.Role;
+import org.apache.catalina.Role;
+
+import java.util.Set;
 
 public record RegisterRequest(
         String name,
         String email,
-        String password,
-        Role role
-) {
-}
+        String password
+){}
