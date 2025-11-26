@@ -57,6 +57,11 @@
 - Atualização de quantidade em estoque
 - Acesso permitido para ADMIN e SELLER
 
+## Gestão Carrinho de Compras
+- Usuário autenticado pode ter apenas 1 carrinho ativo.
+- Itens têm priceSnapshot (preço do momento).
+- Atualizações recalculam totais.
+
 ## Como iniciar o Projeto
 
 1.Clonar o Repositório
@@ -129,6 +134,12 @@ POST   /products            → Criar produto (ADMIN / SELLER)
 PUT    /products/{id}       → Atualizar produto (ADMIN / SELLER)  
 DELETE /products/{id}       → Deletar produto (ADMIN)  
 PATCH  /products/{id}/stock → Atualizar estoque (ADMIN / SELLER)
+
+Carrinho de Compras
+GET  /cart
+POST /cart/items
+PUT  /cart/items/{itemId}
+DELETE /cart/items/{itemId}
 
 
 
