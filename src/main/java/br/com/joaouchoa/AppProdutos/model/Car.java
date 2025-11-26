@@ -18,6 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Car {
 
+
     @Id
     @GeneratedValue
     private UUID id;

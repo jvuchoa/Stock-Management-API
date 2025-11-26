@@ -4,4 +4,5 @@ import java.util.List;
 
 public record CartDTO(List<CarItemResquestDTO> items,
                       double total) {
+
 }

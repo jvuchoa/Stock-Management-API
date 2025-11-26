@@ -8,5 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface CarRepository extends JpaRepository<Car, UUID> {
+
     Optional<Car> findByUser(User user);
 }
