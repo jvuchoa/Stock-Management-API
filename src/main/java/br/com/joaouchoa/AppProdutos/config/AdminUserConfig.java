@@ -51,7 +51,7 @@ public class AdminUserConfig implements CommandLineRunner {
             roleRepository.save(roleCustomer);
         }
 
-        // Cria usuário admin se não existir
+
         var userAdmin = userRepository.findByEmail("admin@example.com");
 
         Role finalRoleAdmin = roleAdmin;
