@@ -5,6 +5,7 @@ import br.com.joaouchoa.AppProdutos.service.ProdutosService;
 import br.com.joaouchoa.AppProdutos.service.dto.ProdutoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,11 +33,13 @@ public class ProdutoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN') or hasAuthority('SCOPE_SELLER')")
     public ResponseEntity<Produtos> criarProduto(@RequestBody Produtos produto) {
         return ResponseEntity.ok(produtosService.criarProduto(produto));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN') or hasAuthority('SCOPE_SELLER')")
     public ResponseEntity<Produtos> atualizarProduto(
             @PathVariable Long id,
             @RequestBody Produtos produto
@@ -45,6 +48,7 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<Void> deletarProduto(@PathVariable Long id) {
         produtosService.deletarProduto(id);
         return ResponseEntity.noContent().build();
